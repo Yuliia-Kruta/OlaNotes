@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Sidebar</title>
+
+  <link rel="shortcut icon" th:href="@{/images/OlaNotes-favicon.ico}" />
+  <link rel="stylesheet" th:href="@{/css/backend-plugin.min.css?v=1.0.0}">
+  <link rel="stylesheet" th:href="@{/css/backend.css?v=1.0.0}">
+  <link rel="stylesheet" th:href="@{/vendor/@fortawesome/fontawesome-free/css/all.min.css}">
+  <link rel="stylesheet" th:href="@{/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css}">
+  <link rel="stylesheet" th:href="@{/vendor/remixicon/fonts/remixicon.css}">
+  <link rel="stylesheet" th:href="@{/vendor/@icon/dripicons/dripicons.css}">
+  <link rel="stylesheet" th:href="@{/css/OlaNotes-style.css}">
+</head>
+
+<body>
+<div th:fragment="sidebar" th:object="${user}">
+  <div class="iq-sidebar  sidebar-default ">
+    <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
+      <a th:href="@{/notes}" class="header-logo">
+        <img th:src="@{/images/OlaNotes-logo.png}" class="img-fluid rounded-normal light-logo" alt="logo"> <h4 class="logo-title ml-3">OlaNotes</h4>
+      </a>
+      <div class="iq-menu-bt-sidebar">
+        <i class="las la-times wrapper-menu"></i>
+      </div>
+    </div>
+    <div class="sidebar-caption dropdown">
+      <a href="#" class="iq-user-toggle d-flex align-items-center justify-content-between" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img th:src="@{/images/user-icon.jpeg}" class="img-fluid rounded avatar-50 mr-3" alt="user">
+        <div class="caption">
+          <h6 th:text="${user.firstName + ' ' + user.lastName}" class="mb-0 line-height text-break"></h6>
+        </div>
+        <i class="las la-angle-down"></i>
+      </a>
+      <div class="dropdown-menu w-100 border-0 my-2" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item mb-2 d-none" href="#">
+          <i class="lar la-user-circle font-size-20 mr-1"></i>
+          <span class="mt-2">My Profile</span>
+        </a>
+        <a class="dropdown-item mb-2" th:href="@{/user/edit}">
+          <i class="las la-user-edit font-size-20 mr-1"></i>
+          <span>Edit Profile</span>
+        </a>
+        <a class="dropdown-item mb-2 d-none" href="#">
+          <i class="las la-user-cog font-size-20 mr-1"></i>
+          <span>Account Settings</span>
+        </a>
+        <a class="dropdown-item mb-3 d-none" href="#">
+          <i class="las la-user-shield font-size-20 mr-1"></i>
+          <span>Privacy Settings</span>
+        </a>
+        <hr class="my-2">
+        <a class="dropdown-item" th:href="@{/logout}">
+          <i class="las la-sign-out-alt font-size-20 mr-1"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </div>
+    <div class="data-scrollbar" data-scroll="1">
+      <div class="iq-search-bar device-search mb-3">
+        <form th:action="@{/notes/search}" class="searchbox">
+          <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+          <input name="query" type="search" class="text search-input" placeholder="Search notes">
+        </form>
+      </div>
+      <div class="iq-sidebar-menu">
+        <form action="#" class="searchbox">
+          <a th:href="@{/notes/new}" class="btn btn-success search-button w-100 d-flex align-items-center" style="color: #fff !important;">
+            <i class="ri-add-line ri-lg mr-2"></i>
+            <span >New note</span>
+          </a>
+        </form>
+      </div>
+
+      <nav class="iq-sidebar-menu">
+        <ul id="iq-sidebar-toggle" class="iq-menu">
+
+          <li class="active">
+            <a th:href="@{/notes}" class="svg-icon">
+              <i>
+                <svg class="svg-icon" id="iq-main-1" width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                </svg>
+              </i>
+              <span>Your Notes</span>
+            </a>
+            <ul id="index" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+            </ul>
+          </li>
+          <li class="d-none" >
+            <a th:href="@{/page-in-dev}" class="collapsed svg-icon" >
+              <i>
+                <svg width="20" class="svg-icon" id="iq-main-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
+                </svg>
+              </i>
+              <span>Notebooks</span>
+              <i class="las la-angle-down iq-arrow-right arrow-hover"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div id="sidebar-bottom" class="position-relative sidebar-bottom">
+        <div class="card rounded shadow-none">
+          <div class="card-body">
+            <div class="sidebarbottom-content">
+              <div class="image"><img th:src="@{/images/side-pic.jpeg}" class="img-fluid" alt="side-bkg"></div>
+              <p class="mb-0">Set Business Account To Explore Premium Features</p>
+              <button type="button" class="btn bg-primary mt-3">Upgrade</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-3"></div>
+    </div>
+</div>
+  </div>
+</div>
+</body>
+</html>

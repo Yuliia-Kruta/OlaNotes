@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>OlaNotes</title>
+
+  <link rel="shortcut icon" th:href="@{/images/OlaNotes-favicon.ico}" />
+  <link rel="stylesheet" th:href="@{/css/backend-plugin.min.css?v=1.0.0}">
+  <link rel="stylesheet" th:href="@{/css/backend.css?v=1.0.0}">
+  <link rel="stylesheet" th:href="@{/vendor/@fortawesome/fontawesome-free/css/all.min.css}">
+  <link rel="stylesheet" th:href="@{/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css}">
+  <link rel="stylesheet" th:href="@{/vendor/remixicon/fonts/remixicon.css}">
+  <link rel="stylesheet" th:href="@{/vendor/@icon/dripicons/dripicons.css}">
+  <link rel="stylesheet" th:href="@{/css/OlaNotes-style.css}">
+</head>
+<body>
+
+<!--Loader-->
+<div id="loading">
+  <div id="loading-center">
+  </div>
+</div>
+
+<!--Wrapper-->
+<div class="wrapper">
+
+  <!--Top navigation bar-->
+  <div th:insert="~{top-nav-bar :: top-nav-bar}"></div>
+  <!--Sidebar-->
+  <div th:insert="~{sidebar :: sidebar}"></div>
+
+  <div class="content-page">
+
+    <!--Container for notes-->
+    <div class="container-fluid note-details">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card card-block card-stretch">
+            <div class="card-body custom-notes-space">
+              <h3 class="">Your Notes</h3>
+              <div class="iq-tab-content">
+
+                <!--Notes navigation bar-->
+                <div class="d-flex flex-wrap align-items-top justify-content-between">
+
+                  <!--Notes categories bar-->
+                  <ul class="d-flex nav nav-pills text-center note-tab mb-3" id="note-pills-tab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link home active show" data-toggle="pill" data-init="note" href="#note1" role="tab" aria-selected="false">All</a>
+                    </li>
+                    <li class="nav-item d-none">
+                      <a class="nav-link home" data-toggle="pill" data-init="shared-note" href="#note2" role="tab" aria-selected="true">Shared Notes</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link home" data-toggle="pill" data-init="pin-note" href="#note3" role="tab" aria-selected="false">Pinned Notes</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link home" data-toggle="pill" data-init="fav-note" href="#note4" role="tab" aria-selected="false">Favourite Notes</a>
+                    </li>
+                  </ul>
+
+                  <!--Notes filter and view buttons-->
+                  <div class="media align-items-top iq-grid">
+
+                    <!--Change notes view button-->
+                    <div class="list-grid-toggle cursor-pointer">
+                      <span class="icon active i-grid rounded"><i class="ri-layout-grid-line font-size-20"></i></span>
+                      <span class="icon active i-list rounded"><i class="ri-list-check font-size-20"></i></span>
+                      <span class="label label-list">List</span>
+                    </div>
+                  </div>
+                </div>
+                <!--End of Notes navigation bar-->
+
+                <!--Notes-->
+                <div class="note-content tab-content">
+
+                  <!--All notes-->
+                  <div id="note1" class="tab-pane fade active show">
+
+                    <!--Grid view-->
+                    <div class="icon active animate__animated animate__fadeIn i-grid">
+                      <div class="row" id="all-notes-grid-view">
+                          <div class="no-all-notes mr-auto ml-auto mt-6">No notes yet</div>
+                          <div th:each="note :${notes}" class="col-lg-4 col-md-6" >
+                            <div class="card card-block card-stretch card-height card-bottom-border-info note-detail">
+                              <div class="card-header d-flex justify-content-between pb-1">
+                                <div class="icon iq-icon-box-2 icon-border-info rounded">
+                                  <svg width="23" height="23" class="svg-icon" id="iq-main-01" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                  </svg>
+                                </div>
+                                <div class="card-header-toolbar d-flex align-items-center">
+                                  <a th:data-note-id="${note.noteId}" href="#" data-toggle="tooltip" data-placement="top" class="show-tab pin-button" title="" data-original-title="pin content">
+                                    <i th:class="${note.isPinned} ? 'fas la-thumbtack mr-2 pin-active' : 'las la-thumbtack mr-2'"></i>
+                                  </a>
+                                  <a th:data-note-id="${note.noteId}" href="#" data-toggle="tooltip" data-placement="top" title="" class="show-tab favorite-button" data-original-title="favorite">
+                                    <i th:class="${note.isFavourite} ? 'fas fa-heart mr-2 fav-active' : 'lar fa-heart mr-2'"></i>
+                                  </a>
+                                  <div class="dropdown">
+                                       <span class="dropdown-toggle dropdown-bg" id="note-dropdownMenuButton4" data-toggle="dropdown" aria-expanded="false" role="button"><i class="ri-more-fill"></i></span>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="note-dropdownMenuButton4" style="">
+                                      <a href="#" class="dropdown-item view-note" data-toggle="modal" th:data-note-id="${note.noteId}"><i class="las la-eye mr-3"></i>View note</a>
+                                      <a th:href="@{/notes/{noteId}/edit(noteId=${note.noteId})}" class="dropdown-item edit-note1"><i class="las la-pen mr-3"></i>Edit</a>
+                                      <a class="dropdown-item my-notee" data-extra-toggle="delete" data-closest-elem=".card" th:data-note-id="${note.noteId}" href="#"><i class="las la-trash-alt mr-3"></i>Delete</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card-body rounded">
+                                <h4 th:text="${note.title}" class="card-title">Note title</h4>
+                                <div th:utext="${note.content}" class="mb-3 card-description short">Note Content</div>
+                              </div>
+                              <div class="card-footer">
+                                <div class="d-flex align-items-center justify-content-between note-text note-text-info">
+                                  <a href="#" class="d-none"><i class="las la-user-friends mr-2 font-size-20"></i>03 share</a>
+                                  <a href="#" class="">
+                                    <i class="las la-calendar mr-2 font-size-20"></i>
+                                    <span th:text="${#temporals.format(note.updatedOn, 'dd MMM yyyy')}">23 April 2023</span>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+
+                    <!--List view-->
+                    <div class="icon active animate__animated animate__fadeIn i-list">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="table-responsive">
+                            <table class="table  tbl-server-info">
+                              <thead>
+                              <tr class="ligth">
+                                <th class="w-50" scope="col">Title</th>
+                                <th scope="col"></th><!--Permission-->
+                                <th scope="col">Created At</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                              </thead>
+                              <tbody id="all-notes-list-view">
+                              <tr>
+                                <td class="no-all-notes mr-auto ml-auto mt-6">No notes yet</td>
+                              </tr>
+                              <tr th:each="note :${notes}">
+                                <td style="max-width: 200px;">
+                                  <h4 class="mb-2">
+                                    <span class="my-h4" style="color: #131313" th:text="${note.title}">Note Title</span>
+                                    <a th:data-note-id="${note.noteId}" href="#" data-toggle="tooltip" data-placement="top" class="show-tab pin-button" title="" data-original-title="pin content">
+                                      <i th:class="${note.isPinned} ? 'fas la-thumbtack ml-2 pin-active my-icon-18' : 'las la-thumbtack ml-2'"></i>
+                                    </a>
+
+                                    <a th:data-note-id="${note.noteId}" href="#" data-toggle="tooltip" data-placement="top" title="" class="show-tab favorite-button" data-original-title="favorite">
+                                      <i th:class="${note.isFavourite} ? 'fas fa-heart ml-1 fav-active my-icon-21' : 'lar fa-heart ml-1'"></i>
+                                    </a>
+                                  </h4>
+                                  <span th:utext="${note.content}" class="card-description short">Note Content</span>
+                                </td>
+                                <td>
+                                  <!--<i class="las la-user-friends mr-2 font-size-20"></i>
+                                  --03 share-->
+                                </td>
+                                <td>
+                                  <a href="#" class="">
+                                    <i class="las la-calendar mr-2 font-size-20"></i>
+                                    <span style="color: #131313" th:text="${#temporals.format(note.updatedOn, 'dd MMM yyyy')}">Updated on</span>
+                                  </a>
+                                </td>
+                                <td>
+                                  <div>
+                                    <a th:href="@{/notes/{noteId}/edit(noteId=${note.noteId})}" class="badge badge-success mr-3"><i class="las la-pen mr-0"></i></a>
+                                    <a href="#" th:data-note-id="${note.noteId}" class="badge badge-danger my-notee" data-extra-toggle="delete" data-closest-elem="tr"><i class="las la-trash-alt mr-0"></i></a>
+                                  </div>
+                                </td>
+                              </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!--Pinned notes-->
+                  <div id="note3" class="tab-pane fade">
+
+                    <!--Grid view-->
+                    <div class="icon active animate__animated animate__fadeIn i-grid">
+                      <div class="row" id="pinned-notes-grid-view">
+                        <div class="no-pin-notes mr-auto ml-auto mt-6">No pinned notes yet</div>
+                        <div th:each="note :${notes}" th:if="${note.isPinned}" class="col-lg-4 col-md-6">
+                          <div class="card card-block card-stretch card-height card-bottom-border-info note-detail">
+                            <div class="card-header d-flex justify-content-between pb-1">
+                              <div class="icon iq-icon-box-2 icon-border-info rounded">
+                                <svg width="23" height="23" class="svg-icon" id="iq-main-01" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                              </div>
+                              <div class="card-header-toolbar d-flex align-items-center">
+                                <a th:data-note-id="${note.noteId}" href="#" data-toggle="tooltip" data-placement="top" class="show-tab pin-button" title="" data-original-title="pin content">
+                                  <i th:class="${note.isPinned} ? 'fas la-thumbtack mr-2 pin-active' : 'las la-thumbtack mr-2'"></i>
+                                </a>
+                                <a th:data-note-id="${note.noteId}" href="#" data-toggle="tooltip" data-placement="top" title="" class="show-tab favorite-button" data-original-title="favorite">
+                                  <i th:class="${note.isFavourite} ? 'fas fa-heart mr-2 fav-active' : 'lar fa-heart mr-2'"></i>
+                                </a>
+                                <div class="dropdown">
+                                  <span class="dropdown-toggle dropdown-bg"  data-toggle="dropdown" aria-expanded="false" role="button"><i class="ri-more-fill"></i></span>
+                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="note-dropdownMenuButton4" style="">
+                                    <a href="#" class="dropdown-item view-note" data-toggle="modal" th:data-note-id="${note.noteId}"><i class="las la-eye mr-3"></i>View note</a>
+                                    <a th:href="@{/notes/{noteId}/edit(noteId=${note.noteId})}" class="dropdown-item edit-note1"><i class="las la-pen mr-3"></i>Edit</a>
+                                    <a class="dropdown-item my-notee" data-extra-toggle="delete" data-closest-elem=".card" th:data-note-id="${note.noteId}" href="#"><i class="las la-trash-alt mr-3"></i>Delete</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card-body rounded">
+                              <h4 th:text="${note.title}" class="card-title">Note title</h4>
+                              <div th:utext="${note.content}" class="mb-3 card-description short">Note Content</div>
+                            </div>
+                            <div class="card-footer">
+                              <div class="d-flex align-items-center justify-content-between note-text note-text-info">
+                                <a href="#" class="d-none"><i class="las la-user-friends mr-2 font-size-20"></i>03 share</a>
+                                <a href="#" class="">
+                                  <i class="las la-calendar mr-2 font-size-20"></i>
+                                  <span th:text="${#temporals.format(note.updatedOn, 'dd MMM yyyy')}">23 April 2023</span>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--List View-->
+                    <div class="icon active animate__animated animate__fadeIn i-list">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="table-responsive">
+                            <table class="table  tbl-server-info">
+                              <thead>
+                              <tr class="ligth">
+                                <th class="w-50" scope="col">Title</th>
+                                <th scope="col">Permission</th>
+                                <th scope="col">Created At</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                              </thead>
+                              <tbody id="pinned-notes-list-view">
+                              <tr>
+                                <td class="no-pin-notes mr-auto ml-auto mt-6">No pinned notes yet</td>
+                              </tr>
+                              <tr th:each="note :${notes}" th:if="${note.isPinned}">
+                                <td style="max-width: 200px;">
+                                  <h4 class="mb-2">
+                                    <span class="my-h4" style="color: #131313" th:text="${note.title}">Note Title</span>
+                                    <a th:data-note-id="${note.noteId}" href="#" data-toggle="tooltip" data-placement="top" class="show-tab pin-button" title="" data-original-title="pin content">
+                                      <i th:class="${note.isPinned} ? 'fas la-thumbtack ml-2 pin-active my-icon-18' : 'las la-thumbtack ml-2'"></i>
+                                    </a>
+
+                                    <a th:data-note-id="${note.noteId}" href="#" data-toggle="tooltip" data-placement="top" title="" class="show-tab favorite-button" data-original-title="favorite">
+                                      <i th:class="${note.isFavourite} ? 'fas fa-heart ml-1 fav-active my-icon-21' : 'lar fa-heart ml-1'"></i>
+                                    </a>
+                                  </h4>
+                                  <span th:utext="${note.content}" class="card-description short">Note Content</span>
+                                </td>
+                                <td>
+                                  <!--i class="las la-user-friends mr-2 font-size-20"></i>
+                                  03 share-->
+                                </td>
+                                <td>
+                                  <a href="#" class="">
+                                    <i class="las la-calendar mr-2 font-size-20"></i>
+                                    <span style="color: #131313" th:text="${#temporals.format(note.updatedOn, 'dd MMM yyyy')}">23 April 2023</span>
+                                  </a>
+                                </td>
+                                <td>
+                                  <div>
+                                    <a th:href="@{/notes/{noteId}/edit(noteId=${note.noteId})}" class="badge badge-success mr-3"><i class="las la-pen mr-0"></i></a>
+                                    <a href="#" th:data-note-id="${note.noteId}" class="badge badge-danger my-notee" data-extra-toggle="delete" data-closest-elem="tr"><i class="las la-trash-alt mr-0"></i></a>
+                                  </div>
+                                </td>
+                              </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--Favourite notes-->
+                  <div id="note4" class="tab-pane fade">
+
+                    <!--Grid View-->
+                    <div class="icon active animate__animated animate__fadeIn i-grid">
+                      <div class="row" id="favorite-notes-grid-view">
+                        <div class="no-fav-notes mr-auto ml-auto mt-6">No favourite notes yet</div>
+                        <div  th:each="note : ${notes}" th:if="${note.isFavourite}" class="col-lg-4 col-md-6" >
+                          <div class="card card-block card-stretch card-height card-bottom-border-info note-detail">
+                            <div class="card-header d-flex justify-content-between pb-1">
+                              <div class="icon iq-icon-box-2 icon-border-info rounded">
+                                <svg width="23" height="23" class="svg-icon" id="iq-main-01" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                              </div>
+                              <div class="card-header-toolbar d-flex align-items-center">
+                                <a th:data-note-id="${note.noteId}" href="#" data-toggle="tooltip" data-placement="top" class="show-tab pin-button" title="" data-original-title="pin content">
+                                  <i th:class="${note.isPinned} ? 'fas la-thumbtack mr-2 pin-active' : 'las la-thumbtack mr-2'"></i>
+                                </a>
+                                 <a th:data-note-id="${note.noteId}" href="#" data-toggle="tooltip" data-placement="top" title="" class="show-tab favorite-button" data-original-title="favorite">
+                                  <i th:class="${note.isFavourite} ? 'fas fa-heart mr-2 fav-active' : 'lar fa-heart mr-2'"></i>
+                                </a>
+                                <div class="dropdown">
+                                  <span class="dropdown-toggle dropdown-bg" data-toggle="dropdown" aria-expanded="false" role="button"><i class="ri-more-fill"></i></span>
+                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="note-dropdownMenuButton4" style="">
+                                    <a href="#" class="dropdown-item view-note" data-toggle="modal" th:data-note-id="${note.noteId}"><i class="las la-eye mr-3"></i>View note</a>
+                                    <a th:href="@{/notes/{noteId}/edit(noteId=${note.noteId})}" class="dropdown-item edit-note1"><i class="las la-pen mr-3"></i>Edit</a>
+                                    <a class="dropdown-item my-notee" data-extra-toggle="delete" data-closest-elem=".card" th:data-note-id="${note.noteId}" href="#"><i class="las la-trash-alt mr-3"></i>Delete</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card-body rounded">
+                              <h4 th:text="${note.title}" class="card-title">Note title</h4>
+                              <div th:utext="${note.content}" class="mb-3 card-description short">Note Content</div>
+                            </div>
+                            <div class="card-footer">
+                              <div class="d-flex align-items-center justify-content-between note-text note-text-info">
+                                <a href="#" class="d-none"><i class="las la-user-friends mr-2 font-size-20"></i>03 share</a>
+                                <a href="#" class="">
+                                  <i class="las la-calendar mr-2 font-size-20"></i>
+                                  <span th:text="${#temporals.format(note.updatedOn, 'dd MMM yyyy')}">23 April 2023</span>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--List view-->
+                    <div class="icon active animate__animated animate__fadeIn i-list">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="table-responsive">
+                            <table class="table  tbl-server-info">
+                              <thead>
+                              <tr class="ligth">
+                                <th class="w-50" scope="col">Title</th>
+                                <th scope="col">Permission</th>
+                                <th scope="col">Created At</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                              </thead>
+                              <tbody id="favorite-notes-list-view">
+                              <tr>
+                                <td class="no-fav-notes mr-auto ml-auto mt-6">No favourite notes yet</td>
+                              </tr>
+                              <tr th:each="note :${notes}" th:if="${note.isFavourite}">
+                                <td style="max-width: 200px;">
+                                  <h4 class="mb-2">
+                                    <span class="my-h4" style="color: #131313" th:text="${note.title}">Note Title</span>
+                                    <a th:data-note-id="${note.noteId}" href="#" data-toggle="tooltip" data-placement="top" class="show-tab pin-button" title="" data-original-title="pin content">
+                                      <i th:class="${note.isPinned} ? 'fas la-thumbtack ml-2 pin-active my-icon-18' : 'las la-thumbtack ml-2'"></i>
+                                    </a>
+
+                                    <a th:data-note-id="${note.noteId}" href="#" data-toggle="tooltip" data-placement="top" title="" class="show-tab favorite-button" data-original-title="favorite">
+                                      <i th:class="${note.isFavourite} ? 'fas fa-heart ml-1 fav-active my-icon-21' : 'lar fa-heart ml-1'"></i>
+                                    </a>
+                                  </h4>
+                                  <span th:utext="${note.content}" class="card-description short">Note Content</span>
+                                </td>
+                                <td>
+                                  <!--i class="las la-user-friends mr-2 font-size-20"></i>
+                                  03 share-->
+                                </td>
+                                <td>
+                                  <a href="#" class="">
+                                    <i class="las la-calendar mr-2 font-size-20"></i>
+                                    <span style="color: #131313" th:text="${#temporals.format(note.updatedOn, 'dd MMM yyyy')}">23 April 2023</span>
+                                  </a>
+                                </td>
+                                <td>
+                                  <div>
+                                    <a th:href="@{/notes/{noteId}/edit(noteId=${note.noteId})}" class="badge badge-success mr-3"><i class="las la-pen mr-0"></i></a>
+                                    <a href="#" th:data-note-id="${note.noteId}" class="badge badge-danger my-notee" data-extra-toggle="delete" data-closest-elem="tr"><i class="las la-trash-alt mr-0"></i></a>
+                                  </div>
+                                </td>
+                              </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--End of notes-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End Container for notes--->
+
+
+    <!--View note Modal-->
+    <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalTitle" aria-hidden="true">
+      <div class="modal-dialog my-modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class=" text-left">
+              <div class="media align-items-top justify-content-between">
+                <h3 class="modal-title mb-3" id="noteModalTitle">Weekly Planner</h3>
+                <div class="btn-cancel p-0" data-dismiss="modal"><i class="las la-times"></i></div>
+              </div>
+              <div class="content create-workform">
+                <div class="modal-body" id="noteModalContent"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Wrapper End-->
+
+<!-- Backend Bundle JavaScript-->
+<script th:src="@{/js/backend-bundle.min.js}"></script>
+
+<!-- app JavaScript -->
+<script th:src="@{/js/app.js}"></script>
+</body>
+</html>

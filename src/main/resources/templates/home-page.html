@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>OlaNotes</title>
+
+    <link rel="shortcut icon" th:href="@{/images/OlaNotes-favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/css/backend.css?v=1.0.0}">
+    <link rel="stylesheet" th:href="@{/vendor/@fortawesome/fontawesome-free/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/remixicon/fonts/remixicon.css}">
+    <link rel="stylesheet" th:href="@{/vendor/@icon/dripicons/dripicons.css}">
+    <link rel="stylesheet" th:href="@{/css/backend-plugin.min.css?v=1.0.0}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/OlaNotes-style.css}">
+</head>
+
+<body>
+<nav class="navbar my-navbar navbar-expand-lg navbar-light sticky-top">
+    <a th:href="@{/}" class="header-logo">
+        <img th:src="@{/images/OlaNotes-logo.png}" class="rounded-normal light-logo logo-image" alt="logo">
+    </a>
+    <a class="navbar-brand ml-3" th:href="@{/}">OlaNotes</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"  aria-label="Toggle navigation">
+        <i class="ri-menu-3-line"></i>
+    </button>
+    <div class="collapse navbar-collapse pl-3" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Developer Portfolio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Contact Us</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link black-text" th:href="@{/login}">Sign In</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link black-text" th:href="@{/register}">Sign Up</a>
+        </li>
+    </ul>
+    </div>
+</nav>
+
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to OlaNotes!</h1>
+    <p class="lead">A powerful note-taking web app</p>
+    <p>Start organizing your notes today</p>
+    <a class="btn btn-success btn-lg btn-signup" th:href="@{/register}">Sign Up</a>
+    <p class="mt-3 mb-0">Already have an Account?  <a th:href="@{/login}" class="text-primary"><b>Sign In</b></a>
+    </p>
+    <img src="images/workspace.png" alt="App Workspace" class="app-workspace-image mt-5 mb-5">
+</div>
+<section class="features-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-item">
+                    <i class="fa fa-pencil-alt"></i>
+                    <h3>Create and Organize</h3>
+                    <p>Create and organize your notes with ease. Keep your thoughts and ideas in one place.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-item">
+                    <i class="fa fa-sync"></i>
+                    <h3>Sync Across Devices</h3>
+                    <p>Access your notes from anywhere. Sync your notes seamlessly across all your devices.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-item">
+                    <i class="fa fa-search"></i>
+                    <h3>Quick Search</h3>
+                    <p>Easily find what you need with our powerful search feature. Search through your notes effortlessly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>&copy 2023 OlaNotes. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

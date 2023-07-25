@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Sign Up</title>
+
+      <link rel="shortcut icon" th:href="@{/images/OlaNotes-favicon.ico}" />
+      <link rel="stylesheet" th:href="@{/css/backend-plugin.min.css?v=1.0.0}">
+      <link rel="stylesheet" th:href="@{/css/backend.css?v=1.0.0}">
+      <link rel="stylesheet" th:href="@{/vendor/@fortawesome/fontawesome-free/css/all.min.css}">
+      <link rel="stylesheet" th:href="@{/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css}">
+      <link rel="stylesheet" th:href="@{/vendor/remixicon/fonts/remixicon.css}">
+      <link rel="stylesheet" th:href="@{/vendor/@icon/dripicons/dripicons.css}">
+      <link rel="stylesheet" th:href="@{/css/OlaNotes-style.css}">
+  </head>
+  <body>
+
+    <!--Page loader-->
+    <div id="loading">
+          <div id="loading-center">
+          </div>
+    </div>
+
+    <div class="wrapper">
+      <section class="login-content">
+         <div class="container h-100">
+            <div class="row justify-content-center align-items-center height-self-center">
+               <div class="col-md-5 col-sm-12 col-12 align-self-center">
+                  <div class="sign-user_card">
+                     <div class="logo-detail">
+                         <div class="d-flex align-items-center"><img th:src="@{/images/OlaNotes-logo.png}" class="img-fluid rounded-normal light-logo logo" alt="logo"> <h4 class="logo-title ml-3">OlaNotes</h4></div>
+                     </div>
+                     <h3 class="mb-2">Sign Up</h3>
+                     <p>Create your  account.</p>
+                      <form method="post" role="form" th:action="@{/register/save}" th:object="${user}">
+                         <div th:if="${emailError}" class="alert alert-danger col-lg-12">
+                             <span th:text="${emailError}"></span></div>
+                         <div th:if="${usernameError}" class="alert alert-danger col-lg-12">
+                             <span th:text="${usernameError}"></span></div>
+                         <div th:if="${blankFieldError}" class="alert alert-warning col-lg-12">
+                             <span th:text="${blankFieldError}"></span></div>
+                         <div th:if="${passwordMismatchError}" class="alert alert-warning col-lg-12">
+                             <span th:text="${passwordMismatchError}"></span></div>
+                         <div th:if="${param.success}">
+                             <div class="alert alert-info">You have successfully registered in our app!</div>
+                         </div>
+                        <div class="row">
+                           <div class="col-lg-6">
+                              <div class="floating-label form-group">
+                                 <input id="firstName" name="firstName" th:field="*{firstName}" class="floating-input form-control" type="text" placeholder=" ">
+                                 <label>First Name</label>
+                              </div>
+                           </div>
+                           <div class="col-lg-6">
+                              <div class="floating-label form-group">
+                                 <input id="lastName" name="lastName" th:field="*{lastName}" class="floating-input form-control" type="text" placeholder=" ">
+                                 <label>Last Name</label>
+                              </div>
+                           </div>
+                            <div class="col-lg-12">
+                                <div class="floating-label form-group">
+                                    <input id="userName" name="userName" th:field="*{username}" class="floating-input form-control" type="text" placeholder=" ">
+                                    <label>Username</label>
+                                </div>
+                            </div>
+                           <div class="col-lg-12">
+                              <div class="floating-label form-group">
+                                 <input id="email" name="email" th:field="*{email}" class="floating-input form-control" type="email" placeholder=" ">
+                                 <label>Email</label>
+                              </div>
+                           </div>
+                           <div class="col-lg-6">
+                              <div class="floating-label form-group">
+                                 <input id="password" name="password" th:field="*{password}" class="floating-input form-control" type="password" placeholder=" ">
+                                 <label>Password</label>
+                              </div>
+                           </div>
+                           <div class="col-lg-6">
+                              <div class="floating-label form-group">
+                                 <input class="floating-input form-control" th:field="*{confirmPassword}" id="passwordCheck" type="password" placeholder=" ">
+                                 <label>Confirm Password</label>
+                              </div>
+                           </div>
+                           </div>
+                           <div class="col-lg-12 d-none">
+                              <div class="custom-control custom-checkbox mb-3 text-left">
+                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                 <label class="custom-control-label" for="customCheck1">I agree with the terms of use</label>
+                              </div>
+                           </div>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                        <p class="mt-3 mb-0">
+                           Already have an Account <a th:href="@{/login}" class="text-primary"><b>Sign In</b></a>
+                        </p>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+    </div>
+
+    <!-- Backend Bundle JavaScript-->
+    <script th:src="@{/js/backend-bundle.min.js}"></script>
+
+    <!-- app JavaScript -->
+    <script th:src="@{/js/app.js}"></script>
+  </body>
+</html>
