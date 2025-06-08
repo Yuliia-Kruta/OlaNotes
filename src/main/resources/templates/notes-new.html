@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>New Note</title>
 
-    <link rel="shortcut icon" th:href="@{/images/OlaNotes-favicon.ico}" />
+    <link rel="shortcut icon" th:href="@{/images/OlaNotes-favicon.ico}"/>
     <link rel="stylesheet" th:href="@{/css/backend-plugin.min.css?v=1.0.0}">
     <link rel="stylesheet" th:href="@{/css/backend.css?v=1.0.0}">
     <link rel="stylesheet" th:href="@{/vendor/@fortawesome/fontawesome-free/css/all.min.css}">
@@ -28,7 +28,7 @@
     <div th:insert="~{sidebar :: sidebar}"></div>
 
     <div class="content-page">
-        <div class="container-fluid note-details d-flex flex-column" >
+        <div class="container-fluid note-details d-flex flex-column">
 
 
             <!--Container for notes-->
@@ -38,18 +38,23 @@
                     <div class="card card-block card-stretch">
                         <div class="card-body write-card">
                             <div class="container-fluid collapse-fluid">
-                                    <form  method="post" th:action="@{/notes/new}" th:object="${note}">
-                                        <div class="col-md-12 col-lg-12 p-0">
-                                            <input  th:field="*{title}" type="text" class="form-control" placeholder="Enter title here">
-                                        </div>
-                                        <div class="col-md-12 col-lg-12 p-0">
-                                            <textarea type="text" rows="4" id="content" placeholder="Content" class="form-control"
+                                <form method="post" th:action="@{/notes/new}" th:object="${note}">
+                                    <div class="col-md-12 col-lg-12 p-0">
+                                        <input th:field="*{title}" type="text" class="form-control"
+                                               placeholder="Enter title here">
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 p-0">
+                                            <textarea type="text" rows="4" id="content" placeholder="Content"
+                                                      class="form-control"
                                                       th:field="*{content}" style="height: auto;"></textarea>
-                                        </div>
-                                        <div class="col-lg-12 p-0 mt-3">
-                                            <button type="submit" class="btn btn-primary ml-2" data-extra-toggle="toggle" data-extra-class-show=".show-note-button" data-extra-class-hide=".hide-note-button">Save</button>
-                                        </div>
-                                    </form>
+                                    </div>
+                                    <div class="col-lg-12 p-0 mt-3">
+                                        <button type="submit" class="btn btn-primary ml-2" data-extra-toggle="toggle"
+                                                data-extra-class-show=".show-note-button"
+                                                data-extra-class-hide=".hide-note-button">Save
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

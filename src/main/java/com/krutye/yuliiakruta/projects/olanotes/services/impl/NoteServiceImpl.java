@@ -93,6 +93,7 @@ public class NoteServiceImpl implements NoteService {
 
         return filteredNotes;
     }
+
     private String removeHtmlTags(String input) {
         return input.replaceAll("\\<.*?\\>", "");
     }

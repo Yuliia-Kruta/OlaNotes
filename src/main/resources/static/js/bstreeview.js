@@ -7,7 +7,7 @@
  *
  * Project: https://github.com/chniter/bstreeview
  */
-; (function ($, window, document, undefined) {
+;(function ($, window, document, undefined) {
     "use strict";
     /**
      * Default bstreeview  options.
@@ -31,10 +31,11 @@
         treeviewItemStateIcon: '<i class="state-icon"></i>',
         treeviewItemIcon: '<i class="item-icon"></i>'
     };
+
     /**
      * BsTreeview Plugin constructor.
-     * @param {*} element 
-     * @param {*} options 
+     * @param {*} element
+     * @param {*} options
      */
     function bstreeView(element, options) {
         this.element = element;
@@ -42,6 +43,7 @@
         this.settings = $.extend({}, defaults, options);
         this.init();
     }
+
     /**
      * Avoid plugin conflict.
      */
@@ -63,7 +65,7 @@
             // Set main bstreeview class to element.
             $(this.element).addClass('bstreeview');
 
-            this.initData({ nodes: this.tree });
+            this.initData({nodes: this.tree});
             var _this = this;
             this.build($(this.element), this.tree, 0);
             // Update angle icon on collapse
@@ -75,8 +77,7 @@
                 if (e.target.hasAttribute('href')) {
                     if (_this.settings.openNodeLinkOnNewTab) {
                         window.open(e.target.getAttribute('href'), '_blank');
-                    }
-                    else {
+                    } else {
                         window.location = e.target.getAttribute('href');
                     }
                 }
@@ -84,7 +85,7 @@
         },
         /**
          * Initialize treeview Data.
-         * @param {*} node 
+         * @param {*} node
          */
         initData: function (node) {
             if (!node.nodes) return;
@@ -103,9 +104,9 @@
         },
         /**
          * Build treeview.
-         * @param {*} parentElement 
-         * @param {*} nodes 
-         * @param {*} depth 
+         * @param {*} parentElement
+         * @param {*} nodes
+         * @param {*} depth
          */
         build: function (parentElement, nodes, depth) {
             var _this = this;

@@ -1,4 +1,3 @@
-
 /*----------------------------------------------
 Index Of Script
 ------------------------------------------------
@@ -30,11 +29,11 @@ Index Of Script
 Index Of Script
 ----------------------------------------------*/
 
-(function(jQuery) {
+(function (jQuery) {
 
     "use strict";
 
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
 
         /*---------------------------------------------------------------------
         Tooltip
@@ -62,11 +61,11 @@ Index Of Script
             }
         });
 
-       /*---------------------------------------------------------------------
-        Sidebar Widget
-        -----------------------------------------------------------------------*/
+        /*---------------------------------------------------------------------
+         Sidebar Widget
+         -----------------------------------------------------------------------*/
 
-        jQuery(document).on("click", '.iq-menu > li > a', function() {
+        jQuery(document).on("click", '.iq-menu > li > a', function () {
             jQuery('.iq-menu > li > a').parent().removeClass('active');
             jQuery(this).parent().addClass('active');
         });
@@ -90,15 +89,15 @@ Index Of Script
         /*---------------------------------------------------------------------
         Progress Bar
         -----------------------------------------------------------------------*/
-        jQuery('.iq-progress-bar > span').each(function() {
+        jQuery('.iq-progress-bar > span').each(function () {
             let progressBar = jQuery(this);
             let width = jQuery(this).data('percent');
             progressBar.css({
                 'transition': 'width 2s'
             });
 
-            setTimeout(function() {
-                progressBar.appear(function() {
+            setTimeout(function () {
+                progressBar.appear(function () {
                     progressBar.css('width', width + '%');
                 });
             }, 100);
@@ -119,17 +118,17 @@ Index Of Script
         /*---------------------------------------------------------------------
         Page Menu
         -----------------------------------------------------------------------*/
-        jQuery(document).on('click', '.wrapper-menu', function() {
+        jQuery(document).on('click', '.wrapper-menu', function () {
             jQuery(this).toggleClass('open');
         });
 
-        jQuery(document).on('click', ".wrapper-menu", function() {
+        jQuery(document).on('click', ".wrapper-menu", function () {
             jQuery("body").toggleClass("sidebar-main");
         });
 
-      /*---------------------------------------------------------------------
-       Close  navbar Toggle
-       -----------------------------------------------------------------------*/
+        /*---------------------------------------------------------------------
+         Close  navbar Toggle
+         -----------------------------------------------------------------------*/
 
         jQuery('.close-toggle').on('click', function () {
             jQuery('.h-collapse.navbar-collapse').collapse('hide');
@@ -138,18 +137,18 @@ Index Of Script
         /*---------------------------------------------------------------------
         user toggle
         -----------------------------------------------------------------------*/
-        jQuery(document).on('click', '.iq-user-toggle', function() {
+        jQuery(document).on('click', '.iq-user-toggle', function () {
             jQuery(this).parent().addClass('show-data');
         });
 
-        jQuery(document).on('click', ".close-data", function() {
+        jQuery(document).on('click', ".close-data", function () {
             jQuery('.iq-user-toggle').parent().removeClass('show-data');
         });
-        jQuery(document).on("click", function(event){
-        var $trigger = jQuery(".iq-user-toggle");
-        if($trigger !== event.target && !$trigger.has(event.target).length){
-            jQuery(".iq-user-toggle").parent().removeClass('show-data');
-        }
+        jQuery(document).on("click", function (event) {
+            var $trigger = jQuery(".iq-user-toggle");
+            if ($trigger !== event.target && !$trigger.has(event.target).length) {
+                jQuery(".iq-user-toggle").parent().removeClass('show-data');
+            }
         });
         /*-------hide profile when scrolling--------*/
         jQuery(window).scroll(function () {
@@ -161,13 +160,13 @@ Index Of Script
         let Scrollbar = window.Scrollbar;
         if (jQuery('.data-scrollbar').length) {
 
-            Scrollbar.init(document.querySelector('.data-scrollbar'), { continuousScrolling: false });
+            Scrollbar.init(document.querySelector('.data-scrollbar'), {continuousScrolling: false});
         }
 
         /*---------------------------------------------------------------------
         Data tables
         -----------------------------------------------------------------------*/
-        if($.fn.DataTable){
+        if ($.fn.DataTable) {
             $('.data-table').DataTable();
         }
 
@@ -176,12 +175,12 @@ Index Of Script
         -----------------------------------------------------------------------*/
 
         // Example starter JavaScript for disabling form submissions if there are invalid fields
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
             var forms = document.getElementsByClassName('needs-validation');
             // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
                     if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
@@ -190,21 +189,21 @@ Index Of Script
                 }, false);
             });
         }, false);
-    
-      /*---------------------------------------------------------------------
-       Active Class for Pricing Table
-       -----------------------------------------------------------------------*/
-      jQuery("#my-table tr th").click(function () {
-        jQuery('#my-table tr th').children().removeClass('active');
-        jQuery(this).children().addClass('active');
-        jQuery("#my-table td").each(function () {
-          if (jQuery(this).hasClass('active')) {
-            jQuery(this).removeClass('active')
-          }
+
+        /*---------------------------------------------------------------------
+         Active Class for Pricing Table
+         -----------------------------------------------------------------------*/
+        jQuery("#my-table tr th").click(function () {
+            jQuery('#my-table tr th').children().removeClass('active');
+            jQuery(this).children().addClass('active');
+            jQuery("#my-table td").each(function () {
+                if (jQuery(this).hasClass('active')) {
+                    jQuery(this).removeClass('active')
+                }
+            });
+            var col = jQuery(this).index();
+            jQuery("#my-table tr td:nth-child(" + parseInt(col + 1) + ")").addClass('active');
         });
-        var col = jQuery(this).index();
-        jQuery("#my-table tr td:nth-child(" + parseInt(col + 1) + ")").addClass('active');
-      });
 
         /*---------------------------------------------------------------------
         Scrollbar
@@ -220,20 +219,19 @@ Index Of Script
 
         jQuery('.data-scrollbar').each(function () {
             var attr = $(this).attr('data-scroll');
-            if (typeof attr !== typeof undefined && attr !== false){
-            let Scrollbar = window.Scrollbar;
-            var a = jQuery(this).data('scroll');
-            Scrollbar.init(document.querySelector('div[data-scroll= "' + a + '"]'));
+            if (typeof attr !== typeof undefined && attr !== false) {
+                let Scrollbar = window.Scrollbar;
+                var a = jQuery(this).data('scroll');
+                Scrollbar.init(document.querySelector('div[data-scroll= "' + a + '"]'));
             }
         });
 
 
-         /*---------------------------------------------------------------------
-           Datatables
-        -----------------------------------------------------------------------*/
-        if(jQuery('.data-tables').length)
-        {
-          $('.data-tables').DataTable();
+        /*---------------------------------------------------------------------
+          Datatables
+       -----------------------------------------------------------------------*/
+        if (jQuery('.data-tables').length) {
+            $('.data-tables').DataTable();
         }
 
         /*---------------------------------------------------------------------
@@ -277,20 +275,20 @@ Index Of Script
         jQuery(window).on("resize", function () {
             if (jQuery(this).width() <= 1199) {
                 jQuery('.iq-note-callapse-menu .collapse').addClass('show');
-            } else{
-                jQuery('.iq-note-callapse-menu .collapse').removeClass('show');                
+            } else {
+                jQuery('.iq-note-callapse-menu .collapse').removeClass('show');
             }
         }).trigger('resize');
 
 
         /*Modal View*/
-        $(document).on('click', '.view-note', function() {
+        $(document).on('click', '.view-note', function () {
             var noteId = $(this).data('note-id');
             console.log('Note ID:', noteId);
             $.ajax({
                 url: '/notes/' + noteId,
                 type: 'GET',
-                success: function(data) {
+                success: function (data) {
                     $('#noteModalTitle').text(data.title);
                     $('#noteModalContent').html(data.content);
                     $('#noteModal').modal('show');
@@ -299,11 +297,10 @@ Index Of Script
         });
 
 
-
         /*---------------------------------------------------------------------
         List and Grid
         -----------------------------------------------------------------------*/
-        $('.list-grid-toggle').on('click', function() {
+        $('.list-grid-toggle').on('click', function () {
             const txt = $(".icon").hasClass('active') ? 'List' : 'Grid';
             $('.icon').toggleClass('active');
             $(".label").text(txt);
@@ -314,14 +311,15 @@ Index Of Script
             initMurri(target)
         });
 
-        if($('.home').hasClass('active')) {
+        if ($('.home').hasClass('active')) {
             initMurri($('.home.active').attr('data-init'))
         }
         var noteGrid = null;
         var sharedGrid = null;
         var favGrid = null;
         var pinGrid = null;
-        function initMurri (type) {
+
+        function initMurri(type) {
             console.log(type)
             switch (type) {
                 case 'shared-note':
@@ -383,30 +381,28 @@ Index Of Script
 
     /*For notes colors*/
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         let allNotesGridView = $('#all-notes-grid-view');
         let allNotesListView = $('#all-notes-list-view');
         if (allNotesGridView.children().length === 1 || allNotesListView.children().length === 1) {
             $('.no-all-notes').show();
-        }
-        else {
+        } else {
             $('.no-all-notes').hide();
         }
     });
 
     /*For pinned notes*/
-    $(document).on('click', $("a[href=\'#note3\']"),function(e) {
+    $(document).on('click', $("a[href=\'#note3\']"), function (e) {
         let pinnedNotesGridView = $('#pinned-notes-grid-view');
         let pinnedNotesListView = $('#pinned-notes-list-view');
         if (pinnedNotesGridView.children().length === 1 || pinnedNotesListView.children().length === 1) {
             $('.no-pin-notes').show();
-        }
-        else {
+        } else {
             $('.no-pin-notes').hide();
         }
     });
 
-    $(document).on('click', '.pin-button', function(e) {
+    $(document).on('click', '.pin-button', function (e) {
         e.preventDefault();
         console.log("Started function pin");
         let noteId = $(this).data('note-id');
@@ -415,8 +411,8 @@ Index Of Script
         $.ajax({
             type: 'POST',
             url: '/notes/' + noteId + '/pin',
-            data: { isPinned: !isPinned },
-            success: function(response) {
+            data: {isPinned: !isPinned},
+            success: function (response) {
 
                 let allNotesGridView = $('#all-notes-grid-view');
                 //let favoriteNotesList = $('#favorite-notes-grid-view');
@@ -427,14 +423,14 @@ Index Of Script
                 let pinnedNotesListView = $('#pinned-notes-list-view');
                 let favoriteNotesListView = $('#favorite-notes-list-view');
 
-                let pinIconAll=allNotesGridView.find('[data-note-id="' + noteId + '"]').closest('.pin-button');
+                let pinIconAll = allNotesGridView.find('[data-note-id="' + noteId + '"]').closest('.pin-button');
                 //let pinIconShared=0;
-                let pinIconPin=pinnedNotesGridView.find('[data-note-id="' + noteId + '"]').closest('.pin-button');
-                let pinIconFav=favoriteNotesGridView.find('[data-note-id="' + noteId + '"]').closest('.pin-button');
+                let pinIconPin = pinnedNotesGridView.find('[data-note-id="' + noteId + '"]').closest('.pin-button');
+                let pinIconFav = favoriteNotesGridView.find('[data-note-id="' + noteId + '"]').closest('.pin-button');
 
-                let pinIconAllList=allNotesListView.find('[data-note-id="' + noteId + '"]').closest('.pin-button');
-                let pinIconPinList=pinnedNotesListView.find('[data-note-id="' + noteId + '"]').closest('.pin-button');
-                let pinIconFavList=favoriteNotesListView.find('[data-note-id="' + noteId + '"]').closest('.pin-button');
+                let pinIconAllList = allNotesListView.find('[data-note-id="' + noteId + '"]').closest('.pin-button');
+                let pinIconPinList = pinnedNotesListView.find('[data-note-id="' + noteId + '"]').closest('.pin-button');
+                let pinIconFavList = favoriteNotesListView.find('[data-note-id="' + noteId + '"]').closest('.pin-button');
 
                 if (isPinned) {
 
@@ -493,7 +489,7 @@ Index Of Script
                 }
                 $(this).tooltip('hide');
             }.bind(this),
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 console.error('Error updating note pin status: ' + errorThrown);
             }
         });
@@ -501,17 +497,16 @@ Index Of Script
 
 
     /*For fav notes*/
-   $(document).on('click', $("a[href=\'#note4\']"),function(e) {
+    $(document).on('click', $("a[href=\'#note4\']"), function (e) {
         let favoriteNotesGridView = $('#favorite-notes-grid-view');
         let favoriteNotesListView = $('#favorite-notes-list-view');
         if (favoriteNotesGridView.children().length === 1 || favoriteNotesListView.children().length === 1) {
             $('.no-fav-notes').show();
-        }
-        else {
+        } else {
             $('.no-fav-notes').hide();
         }
     });
-    $(document).on('click', '.favorite-button', function(e) {
+    $(document).on('click', '.favorite-button', function (e) {
         e.preventDefault();
         let noteId = $(this).data('note-id');
         let isFavourite = $(this).find('i').hasClass('fav-active');
@@ -519,8 +514,8 @@ Index Of Script
         $.ajax({
             type: 'POST',
             url: '/notes/' + noteId + '/favorite',
-            data: { isFavourite: !isFavourite },
-            success: function(response) {
+            data: {isFavourite: !isFavourite},
+            success: function (response) {
 
                 let allNotesGridView = $('#all-notes-grid-view');
                 //let favoriteNotesList = $('#favorite-notes-grid-view');
@@ -531,14 +526,14 @@ Index Of Script
                 let pinnedNotesListView = $('#pinned-notes-list-view');
                 let favoriteNotesListView = $('#favorite-notes-list-view');
 
-                let favIconAll=allNotesGridView.find('[data-note-id="' + noteId + '"]').closest('.favorite-button');
+                let favIconAll = allNotesGridView.find('[data-note-id="' + noteId + '"]').closest('.favorite-button');
                 //let pinIconShared=0;
-                let favIconPin=pinnedNotesGridView.find('[data-note-id="' + noteId + '"]').closest('.favorite-button');
-                let favIconFav=favoriteNotesGridView.find('[data-note-id="' + noteId + '"]').closest('.favorite-button');
+                let favIconPin = pinnedNotesGridView.find('[data-note-id="' + noteId + '"]').closest('.favorite-button');
+                let favIconFav = favoriteNotesGridView.find('[data-note-id="' + noteId + '"]').closest('.favorite-button');
 
-                let favIconAllList=allNotesListView.find('[data-note-id="' + noteId + '"]').closest('.favorite-button');
-                let favIconPinList=pinnedNotesListView.find('[data-note-id="' + noteId + '"]').closest('.favorite-button');
-                let favIconFavList=favoriteNotesListView.find('[data-note-id="' + noteId + '"]').closest('.favorite-button');
+                let favIconAllList = allNotesListView.find('[data-note-id="' + noteId + '"]').closest('.favorite-button');
+                let favIconPinList = pinnedNotesListView.find('[data-note-id="' + noteId + '"]').closest('.favorite-button');
+                let favIconFavList = favoriteNotesListView.find('[data-note-id="' + noteId + '"]').closest('.favorite-button');
 
                 if (isFavourite) {
 
@@ -573,24 +568,23 @@ Index Of Script
                     if (favoriteNotesGridView.children().length !== 1) {
                         $('.no-fav-notes').hide();
                     }
-            }
+                }
                 $(this).tooltip('hide');
             }.bind(this),
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 console.error('Error updating note favorite status: ' + errorThrown);
             }
         });
     });
 
 
-
-    $('.dropdown-menu-right').on('click', function(event){
+    $('.dropdown-menu-right').on('click', function (event) {
         if ($(this).find('[data-toggle]').length == 0) {
             event.stopPropagation();
         }
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.js-example-basic-single').select2();
     });
     $(".select2").select2({
@@ -598,7 +592,7 @@ Index Of Script
         allowClear: true
     });
     $('.basic-select').picker();
-    $(document).on('click','[data-extra-toggle="toggle"]',function (e) {
+    $(document).on('click', '[data-extra-toggle="toggle"]', function (e) {
         const hideClassName = $(this).data('extra-class-hide')
         const hideIdName = $(this).data('extra-id-hide')
         const collapse = $(this).closest('.collapse')
@@ -622,7 +616,7 @@ Index Of Script
         }
     })
 
-    $('.show-tab').on('click', function (e) { 
+    $('.show-tab').on('click', function (e) {
         e.preventDefault();
         let target = $(this).attr('data-show-tab')
         $(target).tab('show')
@@ -633,13 +627,13 @@ Index Of Script
         const closestElem = $(this).attr('data-closest-elem')
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
-              confirmButton: 'btn btn-primary',
-              cancelButton: 'btn btn-outline-primary ml-2'
+                confirmButton: 'btn btn-primary',
+                cancelButton: 'btn btn-outline-primary ml-2'
             },
             buttonsStyling: false
-          })
-          
-          swalWithBootstrapButtons.fire({
+        })
+
+        swalWithBootstrapButtons.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
             icon: 'warning',
@@ -652,64 +646,63 @@ Index Of Script
                 popup: 'animate__animated animate__zoomOut'
             }
         })
-        .then((willDelete) => {
-            if (willDelete.isConfirmed) {
-                const noteId = $(this).attr('data-note-id');
-                const deleteButton = this;
-                $.ajax({
-                    url: '/notes/' + noteId+'/delete',
-                    type: 'DELETE',
-                    success: function(result) {
-                        swalWithBootstrapButtons.fire({
-                                title: 'Deleted!',
-                                text: "Your note has been deleted.",
-                                icon: 'success',
-                                showClass: {
-                                    popup: 'animate__animated animate__zoomIn'
-                                },
-                                hideClass: {
-                                    popup: 'animate__animated animate__zoomOut'
+            .then((willDelete) => {
+                if (willDelete.isConfirmed) {
+                    const noteId = $(this).attr('data-note-id');
+                    const deleteButton = this;
+                    $.ajax({
+                        url: '/notes/' + noteId + '/delete',
+                        type: 'DELETE',
+                        success: function (result) {
+                            swalWithBootstrapButtons.fire({
+                                    title: 'Deleted!',
+                                    text: "Your note has been deleted.",
+                                    icon: 'success',
+                                    showClass: {
+                                        popup: 'animate__animated animate__zoomIn'
+                                    },
+                                    hideClass: {
+                                        popup: 'animate__animated animate__zoomOut'
+                                    }
                                 }
-                            }
-                        ).then(() => {
-                            let closestElem2;
-                            if (closestElem === '.card') {
-                                $('.my-notee[data-note-id="' + noteId + '"][data-closest-elem=".card"]').closest(closestElem).parent().remove();
-                                closestElem2 = 'tr';
-                                $('.my-notee[data-note-id="' + noteId + '"][data-closest-elem="tr"]').closest(closestElem2).remove();
-                            } else {
-                                $('.my-notee[data-note-id="' + noteId + '"][data-closest-elem="tr"]').closest(closestElem).remove();
-                                closestElem2 = '.card';
-                                $('.my-notee[data-note-id="' + noteId + '"][data-closest-elem=".card"]').closest(closestElem2).parent().remove();
-                            }
-                            let allNotesGridView = $('#all-notes-grid-view');
-                            let allNotesListView = $('#all-notes-list-view');
-                            if (allNotesGridView.children().length === 1 || allNotesListView.children().length === 1) {
-                                $('.no-all-notes').show();
-                            }
-                            else {
-                                $('.no-all-notes').hide();
-                            }
-                        })
-                    },
-                    error: function(xhr, status, error) {
-                        swalWithBootstrapButtons.fire({
-                            title: "Error, could not delete"
-                        });
-                    }
-                });
-            } else {
-                swalWithBootstrapButtons.fire({
-                    title: "Your note is safe!",
-                    showClass: {
-                        popup: 'animate__animated animate__zoomIn'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__zoomOut'
-                    }
-                });
-            }
-        });  
+                            ).then(() => {
+                                let closestElem2;
+                                if (closestElem === '.card') {
+                                    $('.my-notee[data-note-id="' + noteId + '"][data-closest-elem=".card"]').closest(closestElem).parent().remove();
+                                    closestElem2 = 'tr';
+                                    $('.my-notee[data-note-id="' + noteId + '"][data-closest-elem="tr"]').closest(closestElem2).remove();
+                                } else {
+                                    $('.my-notee[data-note-id="' + noteId + '"][data-closest-elem="tr"]').closest(closestElem).remove();
+                                    closestElem2 = '.card';
+                                    $('.my-notee[data-note-id="' + noteId + '"][data-closest-elem=".card"]').closest(closestElem2).parent().remove();
+                                }
+                                let allNotesGridView = $('#all-notes-grid-view');
+                                let allNotesListView = $('#all-notes-list-view');
+                                if (allNotesGridView.children().length === 1 || allNotesListView.children().length === 1) {
+                                    $('.no-all-notes').show();
+                                } else {
+                                    $('.no-all-notes').hide();
+                                }
+                            })
+                        },
+                        error: function (xhr, status, error) {
+                            swalWithBootstrapButtons.fire({
+                                title: "Error, could not delete"
+                            });
+                        }
+                    });
+                } else {
+                    swalWithBootstrapButtons.fire({
+                        title: "Your note is safe!",
+                        showClass: {
+                            popup: 'animate__animated animate__zoomIn'
+                        },
+                        hideClass: {
+                            popup: 'animate__animated animate__zoomOut'
+                        }
+                    });
+                }
+            });
     })
 
 
@@ -717,97 +710,97 @@ Index Of Script
         Tab right sidebar open close
     -----------------------------------------------------------------------*/
 
-        $(document).on('click', '[data-extra-toggle="right-sidebar"]', function (e) {
-            $(".right-sidebar-mini").removeClass("right-sidebar")
-        })
+    $(document).on('click', '[data-extra-toggle="right-sidebar"]', function (e) {
+        $(".right-sidebar-mini").removeClass("right-sidebar")
+    })
 
-        $(document).on('click', '[data-extra-toggle="right-sidebar-dissmiss"]', function (e) {
-            $(".right-sidebar-mini").addClass("right-sidebar")
-        })
+    $(document).on('click', '[data-extra-toggle="right-sidebar-dissmiss"]', function (e) {
+        $(".right-sidebar-mini").addClass("right-sidebar")
+    })
 
-        /*---------------------------------------------------------------------
-            On Input change card update
-        -----------------------------------------------------------------------*/
+    /*---------------------------------------------------------------------
+        On Input change card update
+    -----------------------------------------------------------------------*/
 
-        $(document).on('click', '[data-change="click"]', function (e) {
-            const group = $(this).closest('#icon-button')
-            group.find('.active').removeClass('active')
-            $(this).addClass('active')
-            const value = $(this).html()
-            const target = $(this).attr('data-custom-target')
-            $(target).html(value)
-        })
+    $(document).on('click', '[data-change="click"]', function (e) {
+        const group = $(this).closest('#icon-button')
+        group.find('.active').removeClass('active')
+        $(this).addClass('active')
+        const value = $(this).html()
+        const target = $(this).attr('data-custom-target')
+        $(target).html(value)
+    })
 
-        $(document).on('change', '[data-change="radio"]', function (e) {
-            const value = $(this).val()
-            if($(this).attr('data-custom-target') == 'color') {
-                $('#note-icon').attr('class',' ')
-                $('#update-note').attr('class', ' ')
-                $('#note-icon').addClass(`icon iq-icon-box-2 icon-border-${value} rounded`)
-                $('#update-note').addClass(`card card-block card-stretch card-height card-bottom-border-${value} note-detail`)
-            }
-        })
-
-        $(document).on('keyup','[data-change="input"]',function(){
-            const target = $(this).attr('data-custom-target')
-            const value = $(this).val()
-            const defaultValue = $(this).attr('placeholder')
-            if ($(this).attr('type') !== 'date') {
-                if(value !== '') {
-                    $(target).html(value)    
-                } else {
-                    $(target).html(defaultValue)
-                }   
-            } else {
-                $(target).html(changeDateString(value))
-            }
-        })
-
-        $(document).on('change', '[data-change="input"]', function(){
-            const target = $(this).attr('data-custom-target')
-            if ($(this).attr('type') === 'date') {
-                $(target).html(changeDateString($(this).val()))
-            }
-        })
-
-        $(document).on('change', '[data-change="select"]', function (e) {
-            const value = $(this).val()
-            console.log('ts')
-            if($(this).attr('data-custom-target') == 'color') {
-                $('#note-icon').attr('class',' ')
-                $('#update-note').attr('class', ' ')
-                $('#note-icon').addClass(`icon iq-icon-box-2 icon-border-${value} rounded`)
-                $('#update-note').addClass(`card card-block card-stretch card-height card-bottom-border-${value} note-detail`)
-            }
-        })
-
-        function changeDateString(date) {
-            const newDate = new Date(date)
-            const month = new Array();
-            month[0] = "Jan";
-            month[1] = "Feb";
-            month[2] = "Mar";
-            month[3] = "Apr";
-            month[4] = "May";
-            month[5] = "Jun";
-            month[6] = "Jul";
-            month[7] = "Aug";
-            month[8] = "Sept";
-            month[9] = "Oct";
-            month[10] = "Nov";
-            month[11] = "Dec";
-            return `${newDate.getDate()} ${month[newDate.getMonth()]} ${newDate.getFullYear()}`
+    $(document).on('change', '[data-change="radio"]', function (e) {
+        const value = $(this).val()
+        if ($(this).attr('data-custom-target') == 'color') {
+            $('#note-icon').attr('class', ' ')
+            $('#update-note').attr('class', ' ')
+            $('#note-icon').addClass(`icon iq-icon-box-2 icon-border-${value} rounded`)
+            $('#update-note').addClass(`card card-block card-stretch card-height card-bottom-border-${value} note-detail`)
         }
+    })
 
-        $(document).on('click', '[data-reset="note-reset"]', function() {
-            const group = $('#icon-button')
-            group.find('.active').removeClass('active')
-            $('#icon-button').first('button').addClass('active')
-            $('#update-note').closest('#default').html($('.default-note').html())
-        })
+    $(document).on('keyup', '[data-change="input"]', function () {
+        const target = $(this).attr('data-custom-target')
+        const value = $(this).val()
+        const defaultValue = $(this).attr('placeholder')
+        if ($(this).attr('type') !== 'date') {
+            if (value !== '') {
+                $(target).html(value)
+            } else {
+                $(target).html(defaultValue)
+            }
+        } else {
+            $(target).html(changeDateString(value))
+        }
+    })
 
-        $(document).on('click', '.edit-note', function () {
-            $('#notebook-title').val($(this).closest('tr').find('[data-column]').text())
-        })
+    $(document).on('change', '[data-change="input"]', function () {
+        const target = $(this).attr('data-custom-target')
+        if ($(this).attr('type') === 'date') {
+            $(target).html(changeDateString($(this).val()))
+        }
+    })
+
+    $(document).on('change', '[data-change="select"]', function (e) {
+        const value = $(this).val()
+        console.log('ts')
+        if ($(this).attr('data-custom-target') == 'color') {
+            $('#note-icon').attr('class', ' ')
+            $('#update-note').attr('class', ' ')
+            $('#note-icon').addClass(`icon iq-icon-box-2 icon-border-${value} rounded`)
+            $('#update-note').addClass(`card card-block card-stretch card-height card-bottom-border-${value} note-detail`)
+        }
+    })
+
+    function changeDateString(date) {
+        const newDate = new Date(date)
+        const month = new Array();
+        month[0] = "Jan";
+        month[1] = "Feb";
+        month[2] = "Mar";
+        month[3] = "Apr";
+        month[4] = "May";
+        month[5] = "Jun";
+        month[6] = "Jul";
+        month[7] = "Aug";
+        month[8] = "Sept";
+        month[9] = "Oct";
+        month[10] = "Nov";
+        month[11] = "Dec";
+        return `${newDate.getDate()} ${month[newDate.getMonth()]} ${newDate.getFullYear()}`
+    }
+
+    $(document).on('click', '[data-reset="note-reset"]', function () {
+        const group = $('#icon-button')
+        group.find('.active').removeClass('active')
+        $('#icon-button').first('button').addClass('active')
+        $('#update-note').closest('#default').html($('.default-note').html())
+    })
+
+    $(document).on('click', '.edit-note', function () {
+        $('#notebook-title').val($(this).closest('tr').find('[data-column]').text())
+    })
 
 })(jQuery);
