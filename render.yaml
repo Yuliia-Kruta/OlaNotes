@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: olanotes
+    env: docker
+    plan: free
+    branch: master
+    dockerContext: .
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: JDBC_DATABASE_URL
+        sync: false
+      - key: JDBC_DATABASE_USERNAME
+        sync: false
+      - key: JDBC_DATABASE_PASSWORD
+        sync: false
+      - key: DB_HOST
+        value: olanotes-mysql-olanotes.f.aivencloud.com
+      - key: DB_PORT
+        value: "13011"
+      - key: DB_NAME
+        sync: false
