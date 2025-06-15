@@ -8,7 +8,7 @@ Project Link: <a target="new" href="https://olanotes.onrender.com/">Live Demo</a
 <b>OlaNotes</b> is a cloud-based note-taking web application built with Java and Spring Boot. It allows users to securely register, log in, create and manage notes through intuitive dashboard.
 The application leverages a MySQL cloud database and is deployed using Docker on Render.
 <br/><br/>
-This was my first ever pet project.
+OlaNotes was my first-ever pet project. Although not all features were implemented, it helped me understand how the frontend and backend interact, as well as RESTful APIs.
 
 <h2>Features</h2>
 <ul>
