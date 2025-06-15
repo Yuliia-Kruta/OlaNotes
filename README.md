@@ -1,9 +1,8 @@
 <h1 align="center">OlaNotes</h1>
-<br/>
-<img align="left" src="./olanotes.gif" width="30%" height="auto"/>
-<br/><br/><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project Link: <a target="new" href="https://olanotes.onrender.com/">Live Demo</a>
-<br/><br/><br/><br/><br/>
+
+<img src="./olanotes-1.gif" width="60%" height="auto"/>
+<img src="./olanotes-2.gif" width="60%" height="auto"/>
+Project Link: <a target="new" href="https://olanotes.onrender.com/">Live Demo</a>
 <br/>
 <h2>Project description</h2>
 <b>OlaNotes</b> is a cloud-based note-taking web application built with Java and Spring Boot. It allows users to securely register, log in, create and manage notes through intuitive dashboard.
