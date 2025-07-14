@@ -12,7 +12,7 @@ OlaNotes was my first-ever pet project. Although not all features were implement
 
 <h2>Features</h2>
 <ul>
-  <li>User registration and authentication</li>
+  <li>User registration and authentication</li> 
   <li>Create, edit, and delete notes</li>
   <li>Built-in text editor</li>
   <li>Mark notes as favourite or pinned</li>
