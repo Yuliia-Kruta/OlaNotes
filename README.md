@@ -3,6 +3,7 @@
 <img src="./olanotes-1.gif" width="60%" height="auto"/>
 <img src="./olanotes-2.gif" width="60%" height="auto"/>
 Project Link: <a target="new" href="https://olanotes.onrender.com/">Live Demo</a>
+<br/><br/><b>Note:</b> There may be a delay when starting the live demo application for the first time due to the limited performance of Render's free plan. If the app remains unresponsive, please try reloading the page.
 <br/>
 <h2>Project description</h2>
 <b>OlaNotes</b> is a cloud-based note-taking web application built with Java and Spring Boot. It allows users to securely register, log in, create and manage notes through intuitive dashboard.
